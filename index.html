@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Menu</title>
+  <!-- Luxury Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #1b263b;      /* Deep blue-black */
+      --accent-color: #d4af37;       /* Gold */
+      --background-color: #141414;   /* Almost black */
+      --text-color: #eaeaea;         /* Soft white */
+      --shadow: 0 8px 24px rgba(21, 21, 21, 0.15);
+      --border-gold: 2px solid #d4af37;
+      --transition: all 0.3s cubic-bezier(.27,.87,.29,.92);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--background-color);
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: rgba(27, 38, 59, 0.12);
+      border-radius: 24px;
+      box-shadow: 0 2px 18px rgba(34,30,21,0.20);
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: var(--text-color);
+      border-bottom: var(--border-gold);
+      margin-bottom: 2rem;
+      letter-spacing: 2px;
+      font-family: 'Playfair Display', serif;
+      box-shadow: 0 6px 20px rgba(21,21,21,0.10);
+    }
+
+    h1 {
+      font-size: 2.7rem;
+      margin: 0;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--accent-color);
+      text-shadow: 0 2px 8px rgba(34, 31, 21, 0.18);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      margin-top: 1.1rem;
+      border-bottom: 2px solid var(--accent-color);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .gallery-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      background: #232a34;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: var(--border-gold);
+      transition: var(--transition);
+      aspect-ratio: 4/3;
+    }
+    .gallery-item:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(21, 21, 21, 0.30);
+      border-color: #ffd700;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      border-bottom: 3px solid var(--accent-color);
+      background: #232a34;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(20, 20, 20, 0.98);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.active {
+      opacity: 1;
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      height: 90vh;
+      max-width: 1400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal img {
+      max-width: 100%;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+      border: 3px solid var(--accent-color);
+      transition: opacity 0.3s ease;
+    }
+
+
+
+    .close-modal {
+      position: fixed;
+      top: 28px;
+      right: 32px;
+      background: linear-gradient(135deg, #d4af37, #f7e7ce);
+      border: 2px solid #e1c16e;
+      color: #141414;
+      font-size: 2.3rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1101;
+      box-shadow: 0 5px 16px rgba(212,175,55,0.15);
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-modal:hover {
+      transform: rotate(90deg) scale(1.04);
+      background: linear-gradient(90deg, #e1c16e, #d4af37);
+      color: #1b263b;
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+
+      .modal-content {
+        width: 95%;
+      }
+
+      .slider-controls {
+        padding: 0 1rem;
+      }
+
+      .slider-controls button {
+        width: 40px;
+        height: 40px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🍽️ Our Menu</h1>
+    <p class="subtitle">Discover our delightful selection of dishes</p>
+  </header>
+
+  <div class="container">
+    <div class="gallery-container">
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="img.png" alt="Menu Item 1">
+        </div>
+        <div class="gallery-item">
+          <img src="img2.png" alt="Menu Item 2">
+        </div>
+        <div class="gallery-item">
+          <img src="img3.png" alt="Menu Item 3">
+        </div>
+        <div class="gallery-item">
+          <img src="img4.png" alt="Menu Item 4">
+        </div>
+        <div class="gallery-item">
+          <img src="img5.png" alt="Menu Item 5">
+        </div>
+        <div class="gallery-item">
+          <img src="img6.png" alt="Menu Item 6">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <button class="close-modal" id="closeModal">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="modal-content">
+      <img id="modalImg">
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+    const closeModal = document.getElementById("closeModal");
+    const images = document.querySelectorAll(".gallery img");
+
+    images.forEach((img) => {
+      img.addEventListener("click", (e) => {
+        e.preventDefault();
+        modalImg.style.opacity = '0';
+        modal.style.display = "block";
+        
+        setTimeout(() => {
+          modalImg.src = img.src;
+          modalImg.style.opacity = '1';
+          modal.classList.add('active');
+        }, 50);
+      });
+    });
+
+    [modal, closeModal].forEach(element => {
+      element.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.classList.remove('active');
+        setTimeout(() => {
+          modal.style.display = "none";
+        }, 300);
+      });
+    });
+
+    modalImg.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+      if (modal.style.display === "block" && e.key === "Escape") {
+        closeModal.click();
+      }
+    });
+  </script>
+</body>
+</html>
