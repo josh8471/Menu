@@ -18,6 +18,193 @@
       --transition: all 0.3s cubic-bezier(.27,.87,.29,.92);
     }
 
+    /* Welcome Popup Styles */
+    .welcome-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .welcome-content {
+      background: linear-gradient(135deg, #1b263b, #232a34);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      border: 3px solid var(--accent-color);
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+      animation: welcomeFadeIn 0.5s ease-out;
+    }
+
+    @keyframes welcomeFadeIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .welcome-content h2 {
+      color: var(--accent-color);
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .welcome-content p {
+      color: var(--text-color);
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .close-welcome {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: var(--accent-color);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .close-welcome:hover {
+      transform: rotate(90deg);
+    }
+
+    .enter-btn {
+      background: linear-gradient(135deg, #d4af37, #f7e7ce);
+      color: #1b263b;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      font-weight: 500;
+    }
+
+    .enter-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #e1c16e, #ffd700);
+    }
+
+    /* Active Offer Banner */
+    .offer-banner {
+      background: linear-gradient(45deg, #d4af37, #1b263b);
+      color: white;
+      text-align: center;
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+      animation: shine 2s infinite;
+    }
+
+    @keyframes shine {
+      0% { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    .offer-banner p {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .offer-banner strong {
+      color: #ffd700;
+    }
+
+    /* Footer Styles */
+    footer {
+      background: linear-gradient(to bottom, #1b263b, #0a0d13);
+      color: var(--text-color);
+      padding: 50px 0 20px;
+      margin-top: 50px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    .footer-section {
+      margin-bottom: 30px;
+    }
+
+    .footer-section h3 {
+      color: var(--accent-color);
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .footer-section p {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      color: var(--accent-color);
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: #ffd700;
+      transform: translateY(-3px);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-info a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-info a:hover {
+      color: var(--accent-color);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .map-container {
+      border-radius: 10px;
+      overflow: hidden;
+      border: var(--border-gold);
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       background: var(--background-color);
@@ -87,7 +274,10 @@
       box-shadow: var(--shadow);
       border: var(--border-gold);
       transition: var(--transition);
-      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
     }
     .gallery-item:hover {
       transform: translateY(-8px) scale(1.03);
@@ -95,12 +285,12 @@
       border-color: #ffd700;
     }
     .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
       display: block;
       cursor: pointer;
-      border-bottom: 3px solid var(--accent-color);
+      border-radius: 12px;
       background: #232a34;
     }
 
@@ -133,6 +323,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
 
     .modal img {
@@ -145,6 +336,52 @@
       box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
       border: 3px solid var(--accent-color);
       transition: opacity 0.3s ease;
+    }
+
+    .slider-controls {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      pointer-events: none;
+    }
+
+    .nav-btn {
+      background: linear-gradient(135deg, #d4af37, #f7e7ce);
+      color: #1b263b;
+      border: 2px solid #e1c16e;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition);
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .nav-btn:hover {
+      background: linear-gradient(90deg, #e1c16e, #ffd700);
+      transform: scale(1.1);
+    }
+
+    .slide-counter {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--accent-color);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(5px);
     }
 
 
@@ -186,7 +423,7 @@
       }
 
       .slider-controls {
-        padding: 0 1rem;
+        padding: 0 0 ;
       }
 
       .slider-controls button {
@@ -202,6 +439,23 @@
 </head>
 <body>
 
+  <!-- Welcome Popup -->
+  <div class="welcome-popup" id="welcomePopup">
+    <div class="welcome-content">
+      <button class="close-welcome" id="closeWelcome">
+        <i class="fas fa-times"></i>
+      </button>
+      <h2>🍽️ Welcome to Our Restaurant</h2>
+      <p>Experience the finest dining with our carefully curated menu of exquisite dishes. We take pride in serving you the best flavors from around the world.</p>
+      <button class="enter-btn" id="enterSite">Explore Menu</button>
+    </div>
+  </div>
+
+  <!-- Offer Banner -->
+  <div class="offer-banner">
+    <p>🌟 <strong>Special Offer:</strong> 20% OFF on Family Platters this Weekend! 🌟</p>
+  </div>
+
   <header>
     <h1>🍽️ Our Menu</h1>
     <p class="subtitle">Discover our delightful selection of dishes</p>
@@ -211,23 +465,21 @@
     <div class="gallery-container">
       <div class="gallery">
         <div class="gallery-item">
-          <img src="img.png" alt="Menu Item 1">
+          <img src="Images/menu2.png" alt="Menu Item 1">
         </div>
         <div class="gallery-item">
-          <img src="img2.png" alt="Menu Item 2">
+          <img src="Images/img.png" alt="Menu Item 2">
         </div>
         <div class="gallery-item">
-          <img src="img3.png" alt="Menu Item 3">
+          <img src="Images/menu1.jpg" alt="Menu Item 3">
         </div>
         <div class="gallery-item">
-          <img src="img4.png" alt="Menu Item 4">
+          <img src="Images/menu3.png" alt="Menu Item 4">
         </div>
         <div class="gallery-item">
-          <img src="img5.png" alt="Menu Item 5">
+          <img src="Images/men.png" alt="Menu Item 5">
         </div>
-        <div class="gallery-item">
-          <img src="img6.png" alt="Menu Item 6">
-        </div>
+       
       </div>
     </div>
   </div>
@@ -239,6 +491,15 @@
     </button>
     <div class="modal-content">
       <img id="modalImg">
+      <div class="slider-controls">
+        <button id="prevBtn" class="nav-btn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="nextBtn" class="nav-btn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="slide-counter" id="slideCounter">1 / 6</div>
     </div>
   </div>
 
@@ -247,18 +508,33 @@
     const modalImg = document.getElementById("modalImg");
     const closeModal = document.getElementById("closeModal");
     const images = document.querySelectorAll(".gallery img");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const slideCounter = document.getElementById("slideCounter");
+    let currentImageIndex = 0;
 
-    images.forEach((img) => {
+    function updateSlideCounter() {
+      slideCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+    }
+
+    function showImage(index) {
+      modalImg.style.opacity = '0';
+      currentImageIndex = index;
+      
+      setTimeout(() => {
+        modalImg.src = images[index].src;
+        modalImg.style.opacity = '1';
+        updateSlideCounter();
+      }, 300);
+    }
+
+    images.forEach((img, index) => {
       img.addEventListener("click", (e) => {
         e.preventDefault();
-        modalImg.style.opacity = '0';
+        currentImageIndex = index;
         modal.style.display = "block";
-        
-        setTimeout(() => {
-          modalImg.src = img.src;
-          modalImg.style.opacity = '1';
-          modal.classList.add('active');
-        }, 50);
+        showImage(index);
+        modal.classList.add('active');
       });
     });
 
@@ -277,11 +553,106 @@
     });
 
     // Keyboard navigation
+    function changeImage(direction) {
+      const newIndex = (currentImageIndex + direction + images.length) % images.length;
+      showImage(newIndex);
+    }
+
+    prevBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      changeImage(-1);
+    });
+
+    nextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      changeImage(1);
+    });
+
     document.addEventListener("keydown", (e) => {
-      if (modal.style.display === "block" && e.key === "Escape") {
-        closeModal.click();
+      if (modal.style.display === "block") {
+        if (e.key === "ArrowLeft") prevBtn.click();
+        if (e.key === "ArrowRight") nextBtn.click();
+        if (e.key === "Escape") closeModal.click();
+      }
+    });
+
+    // Welcome Popup Functionality
+    const welcomePopup = document.getElementById("welcomePopup");
+    const closeWelcome = document.getElementById("closeWelcome");
+    const enterSite = document.getElementById("enterSite");
+
+    // Show welcome popup when page loads
+    window.addEventListener("load", () => {
+      welcomePopup.style.display = "flex";
+    });
+
+    // Close popup functions
+    function closeWelcomePopup() {
+      welcomePopup.style.opacity = "0";
+      setTimeout(() => {
+        welcomePopup.style.display = "none";
+      }, 500);
+    }
+
+    closeWelcome.addEventListener("click", closeWelcomePopup);
+    enterSite.addEventListener("click", closeWelcomePopup);
+
+    // Close popup when clicking outside
+    welcomePopup.addEventListener("click", (e) => {
+      if (e.target === welcomePopup) {
+        closeWelcomePopup();
       }
     });
   </script>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Location</h3>
+        <p>123 Gourmet Street<br>Foodie District<br>Mumbai, 400001</p>
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995!3d19.08219865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1659652171181!5m2!1sen!2sin" 
+            width="100%" 
+            height="200" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <div class="contact-info">
+          <a href="tel:+919876543210">
+            <i class="fas fa-phone"></i> +91 987-654-3210
+          </a>
+          <a href="mailto:info@restaurant.com">
+            <i class="fas fa-envelope"></i> info@restaurant.com
+          </a>
+          <p>
+            <i class="fas fa-clock"></i> Mon-Sun: 11:00 AM - 11:00 PM
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <p>Stay connected with us on social media for updates, special offers, and behind-the-scenes content.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Our Restaurant. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
